@@ -1,0 +1,31 @@
+leadbots/
+├── agents/                       # Individual agent scripts (modular + reusable)
+│   ├── base_agent.py
+│   ├── ollama_agent.py
+│   └── __init__.py
+│
+├── tools/                        # Custom tools (scrapers, REPL tools, etc.)
+│   ├── search_tool.py
+│   ├── repl_tool.py
+│   └── __init__.py
+│
+├── memory/                       # Memory strategies (ConversationBuffer, vector, etc.)
+│   ├── buffer_memory.py
+│   └── __init__.py
+│
+├── config/                       # Config and environment
+│   ├── .env
+│   └── config.py
+│
+├── data/                         # Output leads, temp storage, logs
+│   ├── logs/
+│   ├── leads.csv
+│   └── chat_history/
+│
+├── tests/                        # Testing and validation
+│   ├── test_agents.py
+│   └── test_tools.py
+│
+├── requirements.txt              # All stable pinned packages
+├── README.md                     # Project instructions
+└── run.py                        # Entrypoint to launch agent

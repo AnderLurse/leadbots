@@ -1,0 +1,39 @@
+import os
+from langchain.agents import initialize_agent, AgentType
+from langchain_community.llms import Ollama
+from langchain.agents.agent_toolkits import PythonREPLTool
+from langchain.tools import DuckDuckGoSearchRun
+from langchain.memory import ConversationBufferMemory
+
+# Set the model to use (must be available in `ollama list`)
+MODEL_NAME = "llama3"  # or "mistral" if you prefer
+
+# Connect to local Ollama
+llm = Ollama(model=MODEL_NAME, base_url="http://localhost:11434")
+
+# Set up tools for the agent
+tools = [
+    PythonREPLTool(),  # lets the agent run Python code
+    DuckDuckGoSearchRun(),  # web search tool
+]
+
+# Memory buffer
+memory = ConversationBufferMemory(memory_key="chat_history")
+
+# Initialize agent
+agent = initialize_agent(
+    tools=tools,
+    llm=llm,
+    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+    verbose=True,
+    memory=memory
+)
+
+# Start interaction
+while True:
+    user_input = input("🧠 You: ")
+    if user_input.lower() in ["exit", "quit"]:
+        print("👋 Exiting agent.")
+        break
+    response = agent.run(user_input)
+    print(f"🤖 Agent: {response}")
