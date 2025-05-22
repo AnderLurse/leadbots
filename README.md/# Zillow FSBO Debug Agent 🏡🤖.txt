@@ -1,0 +1,26 @@
+# Zillow FSBO Debug Agent 🏡🤖
+
+This is an automated lead scraping and self-healing Python bot that pulls FSBO (For Sale By Owner) listings from Zillow and emails you daily leads. If scraping fails (e.g. CAPTCHA or selector change), it uses GPT to fix itself via Ollama integration.
+
+## 🔧 Features
+- Scrapes FSBO listings by zip code using Selenium
+- Sends formatted HTML emails with results via SendGrid
+- Saves fallback HTML snapshots for debugging
+- Autonomously uses GPT to patch broken scraper logic
+- Logs lead data and retries intelligently
+
+## 📦 Includes
+- `autopilot_leadbot.py` – Scheduler + scraper runner
+- `zillow_scraper_main.py` – Lead scraping logic
+- `ollama_gpt_debug_agent.py` – Autonomous GPT repair engine
+- `tools/gpt_fix_rewriter.py` – GPT fixer script
+- `LICENSE.txt` – Usage license
+- `README.md` – This file
+
+## 🚀 Getting Started
+1. Install dependencies with `pip install -r requirements.txt`
+2. Add your API keys for OpenAI and SendGrid inside the scripts
+3. Run `ollama_gpt_debug_agent.py` to start the auto-repair scraping loop
+
+## 🛡 License
+See `LICENSE.txt` for commercial and resale rights.
